@@ -1,4 +1,5 @@
 const functions = require('./functions');
+const { exception } = require('console');
 
 // toBe
 test('Adds 2 + 2 to equal 4', () => {
@@ -48,5 +49,14 @@ test('There is no I in team', () => {
 test('Admin should be in userNames', () => {
   userNames = ['John', 'Karen', 'admin'];
 
-  expect(username).toContain('admin');
+  expect(userNames).toContain('admin');
+});
+
+// Working with async data
+test('user fetched name shouls be Leanne Graham', () => {
+  expect.assertions(1);
+  return functions.fetchUser()
+    .then(data => {
+      expect(data.name).toEqual('Leanne Graham')
+    });
 });
